@@ -14,7 +14,7 @@ Welcome! This guide is built from hands-on experience running Vault in real envi
 
 ### Installation & Configuration
 - [Production Setup on Linux](01-Configuration_and_installation/install-vault-on-pi.md) — install, harden, configure TLS, telemetry, and systemd
-- [Auto-Unseal with AWS KMS](01-Configuration_and_installation/vault-auto-unseal-aws.md)
+<!-- - [Auto-Unseal with AWS KMS](01-Configuration_and_installation/vault-auto-unseal-aws.md) -->
 - [Auto-Unseal with GCP KMS](01-Configuration_and_installation/vault-auto-unseal-gcp.md)
 
 ### Token Management
