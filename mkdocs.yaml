@@ -51,7 +51,7 @@ nav:
   - Installation & Configuration:
     - Install on Raspberry Pi: 01-Configuration_and_installation/install-vault-on-pi.md
     - Auto Unseal (GCP): 01-Configuration_and_installation/vault-auto-unseal-gcp.md
-    - Auto Unseal (AWS): 01-Configuration_and_installation/vault-auto-unseal-aws.md
+    # - Auto Unseal (AWS): 01-Configuration_and_installation/vault-auto-unseal-aws.md
   - Tokens:
     - Introduction: 02-Tokens/Intro.md
     - Service Vs Batch tokens: 02-Tokens/ServicevsBatch.md
