@@ -130,5 +130,5 @@ ssh -i ~/.ssh/id_vault -i ~/.ssh/id_vault-cert.pub sachin@192.168.29.10
 **Note:** OpenSSH usually detects the corresponding `-cert.pub` file automatically if the private key is specified, so the following might also work:
 
 ```bash
-ssh -i ~/.ssh/id_vault sacchin@192.168.29.10
+ssh -i ~/.ssh/id_vault sachin@192.168.29.10
 ```
