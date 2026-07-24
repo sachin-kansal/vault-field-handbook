@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: vault-app
+  name: vault-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vault-app
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: vault-app
+      annotations:
+        vault.hashicorp.com/agent-inject: "true"
+        vault.hashicorp.com/role: "myapp"
+        vault.hashicorp.com/agent-inject-secret-mysecretfile: "kv/data/secret"
+        vault.hashicorp.com/tls-secret: "vault-ca"
+        vault.hashicorp.com/ca-cert: "/vault/tls/ca.crt"
+    spec:
+      serviceAccount: vault-sa
+      containers:
+      - image: busybox
+        name: busybox
+        command: ["sh", "-c", "cat /vault/secrets/mysecretfile && sleep 3600"]
