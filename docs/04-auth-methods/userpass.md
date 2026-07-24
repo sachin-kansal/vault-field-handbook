@@ -152,7 +152,7 @@ token_meta_username    sachin
 >this token gets stored at 
 ```bash
 cat ~/.vault-token
-hvs.CAESIN6a1Y2GPdtmtKzbz4YA5HlbNewryLfKE1HR-mjMiwTjGh4KHGh2cy5aNUR3UDlWaEYwYUphNUVjcFZBS2hUREoroo
+hvs.CAExxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 until logged out.
 

@@ -67,7 +67,7 @@ mysql -u root -p
 
 ```sql
 ALTER USER 'root'@'localhost'
-IDENTIFIED BY 'zqf6aEHi!cup';
+IDENTIFIED BY 'XXXXXXXX';
 ```
 
 ------- Now your mysql is writting into the hardisk/ssd instead of default -----------
