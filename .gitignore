@@ -4,5 +4,5 @@ site/
 .vscode/
 
 docs/.seal-keys
-docs/k8s-data-practice-c1f4296c5383.json
+k8s-data-practice-c1f4296c5383.json
 docs/vault-cert.crt
