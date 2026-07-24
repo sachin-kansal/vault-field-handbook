@@ -1,0 +1,8 @@
+venv/
+site/
+.mysql
+.vscode/
+
+docs/.seal-keys
+docs/k8s-data-practice-c1f4296c5383.json
+docs/vault-cert.crt

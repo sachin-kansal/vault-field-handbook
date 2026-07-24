@@ -1,0 +1,70 @@
+site_name: Vault Field Manual
+site_description: Hands-on HashiCorp Vault from production setup to secrets management
+site_author: Sachin
+
+plugins:
+  - search
+  - to-pdf:
+      output_path: "Vault Field Manual.pdf"
+      heading_shift: true
+      toc_title: "Table of Contents"
+      # toc_level: 2
+      ordered_chapter_level: 1
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: deep purple
+      accent: teal
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: deep purple
+      accent: teal
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.highlight
+    - content.code.copy
+
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.details
+  - attr_list
+
+nav:
+  - Introduction:
+    - Why Vault: 00-Intro/Why_Vault.md
+    - Architecture: 00-Intro/architecture.md
+  - Installation & Configuration:
+    - Install on Raspberry Pi: 01-Configuration_and_installation/install-vault-on-pi.md
+    - Auto Unseal (GCP): 01-Configuration_and_installation/vault-auto-unseal-gcp.md
+    - Auto Unseal (AWS): 01-Configuration_and_installation/vault-auto-unseal-aws.md
+  - Tokens:
+    - Introduction: 02-Tokens/Intro.md
+    - Service Vs Batch tokens: 02-Tokens/ServicevsBatch.md
+    - Root token: 02-Tokens/Root_token.md
+  - Auth Methods:
+    - Agent Injector: 04-auth-methods/agentinjector.md
+    - Userpass: 04-auth-methods/userpass.md
+  - Secrets Engines:
+    - KV: 06-secret-engines/kv.md
+    - SSH: 06-secret-engines/ssh.md
+    - DynamicSecrets: 06-secret-engines/dynamicsecret.md
+  - Operations:
+    - Migrating Backend: 07-Operations/migrating-backened.md
+
+copyright: |
+  © 2026 Draft v1 Sachin Kansal . All rights reserved.

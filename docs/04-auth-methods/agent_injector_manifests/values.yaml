@@ -1,0 +1,15 @@
+server:
+  enabled: false
+
+injector:
+  externalVaultAddr: "https://192.168.29.10:8200"
+  extraEnvironmentVars:
+    VAULT_CACERT: /vault/tls/ca.crt
+  extraVolumes:
+    - type: secret
+      name: vault-ca
+  extraVolumeMounts:
+    - mountPath: /vault/tls
+      name: vault-ca
+      readOnly: true
+
