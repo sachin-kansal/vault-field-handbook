@@ -62,7 +62,7 @@ nav:
   - Secrets Engines:
     - KV: 06-secret-engines/kv.md
     - SSH: 06-secret-engines/ssh.md
-    - DynamicSecrets: 06-secret-engines/dynamicsecret.md
+    # - DynamicSecrets: 06-secret-engines/dynamicsecret.md
   - Operations:
     - Migrating Backend: 07-Operations/migrating-backened.md
 
