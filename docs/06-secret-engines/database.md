@@ -36,9 +36,26 @@ The following steps show how to make your database credentials dynamic.
 
 ## Create DB connection in Vault
 
-![DB_COnnection](../assets/secret%20engines/db/db-connection.png)
+![DB_Connection](../assets/secret%20engines/db/db-connection.png)
 
 ## Create Role for app
+
+Creation statement 
+> SQl statement to create role and grant Select permission to public scheme for all tables.
+
+```sql
+CREATE ROLE "{{name}}" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}';
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO "{{name}}";
+```
+Revoke Statement
+
+> Sql Statement to revoke the user and grant any object owned by temporary user to assign back to vault_admin.
+
+```sql
+REASSIGN OWNED BY "{{name}}" TO vault_admin;
+DROP OWNED BY "{{name}}";
+DROP ROLE IF EXISTS "{{name}}";
+```
 
 ![App_reader](../assets/secret%20engines/db/app-reader.png)
 
