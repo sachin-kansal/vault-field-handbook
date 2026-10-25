@@ -1,40 +1,44 @@
 # Kubernetes authentication agent injector
 
-## architecture of what we are building
+## Architecture of what we are building
 
 ![architecture](../assets/authmethods/k8s/architecture.png)
 
-## create secret with tls certficate used to validate vault
+## Create secret with tls certficate used to validate vault
 kubectl create secret generic vault-ca --from-file=ca.crt=/etc/vault.d/vault-cert.pem
 
-## install the agent injector from helm 
+## Install the agent injector from helm 
 > to add the hashicorp official charts
+
 ```bash 
 helm repo add hashicorp https://helm.releases.hashicorp.com
 ```
 > to get a local pull and study the values file
+
 ```bash
 helm pull hashicorp/vault 
 ```
 > install agent injector with values files
+
 ```bash
 helm install vault-injector hashicorp/vault --namespace vault --values ./values.yaml
 ```
 
 refrence values.yaml is defined in `.\agent_injector_manifests\values.yaml`
 
-## create reviewer service account and token
+## Create reviewer service account and token
 
-> this service account is used to login into the vault and verify the connection
+> This service account is used to login into the vault and verify the connection
 ```bash
 kubectl create serviceaccount vault-reviewer
+
 REVIEWER=$(kubectl get secret vault-reviewer-token -o jsonpath='{.data.token}' | base64 -d)
 ```
 this Reviewer token will be used in kubernetese auth config
 
 Note: If not done properly 403 permission denied errors will pop in vault-agent-init
 
-## enable kubernetes authentication mechanism
+## Enable kubernetes authentication mechanism
 
 ```bash
 vault auth enable kubernetes
@@ -49,7 +53,7 @@ vault write auth/kubernetes/config \
 
 ![k8sauthenabled](../assets/authmethods/k8s/kubernetes%20enable.png)
 
-## create role and policy
+## Create role and policy
 >policy
 ![policy](../assets/authmethods/k8s/poliy.png)
 
@@ -63,10 +67,10 @@ vault write auth/kubernetes/role/myapp \
   audience="k3s" \
   alias_name_source="serviceaccount_name"
 ```
-## create secret in vault
+## Create secret in vault
 ![secret](../assets/authmethods/k8s/secret.png)
 
-## create a test app and its service account
+## Create a test app and its service account
 
 > use deployment.yam to create a deployment
 
@@ -83,7 +87,7 @@ Important annotations
 
 ![podlogs](../assets/authmethods/k8s/output.png)
 
-##### agent_injector_manifest
+##### Agent_injector_manifest
 
 - values.yaml used in helm install [values.yaml](./agent_injector_manifests/values.yaml)
 - deployment.yaml [deployment.yaml](./agent_injector_manifests/deployment.yaml)
