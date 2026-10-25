@@ -675,11 +675,26 @@ a Kubernetes Secret, or a shared environment file:</p>
 </blockquote>
 <p><img alt="Vault admin" src="../../assets/secret%20engines/db/vault-admin.png"/></p>
 <h2 id="create-db-connection-in-vault">Create DB connection in Vault</h2>
-<p><img alt="DB_COnnection" src="../../assets/secret%20engines/db/db-connection.png"/></p>
+<p><img alt="DB_Connection" src="../../assets/secret%20engines/db/db-connection.png"/></p>
 <h2 id="create-role-for-app">Create Role for app</h2>
+<p>Creation statement </p>
+<blockquote>
+<p>SQl statement to create role and grant Select permission to public scheme for all tables.</p>
+</blockquote>
+<p><div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">ROLE</span><span class="w"> </span><span class="ss">"{{name}}"</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="n">LOGIN</span><span class="w"> </span><span class="n">PASSWORD</span><span class="w"> </span><span class="s1">'{{password}}'</span><span class="w"> </span><span class="k">VALID</span><span class="w"> </span><span class="k">UNTIL</span><span class="w"> </span><span class="s1">'{{expiration}}'</span><span class="p">;</span>
+<a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="n">TABLES</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="k">SCHEMA</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="ss">"{{name}}"</span><span class="p">;</span>
+</code></pre></div>
+Revoke Statement</p>
+<blockquote>
+<p>Sql Statement to revoke the user and grant any object owned by temporary user to assign back to vault_admin.</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="n">REASSIGN</span><span class="w"> </span><span class="n">OWNED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="ss">"{{name}}"</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">vault_admin</span><span class="p">;</span>
+<a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="k">DROP</span><span class="w"> </span><span class="n">OWNED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="ss">"{{name}}"</span><span class="p">;</span>
+<a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="k">DROP</span><span class="w"> </span><span class="k">ROLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="ss">"{{name}}"</span><span class="p">;</span>
+</code></pre></div>
 <p><img alt="App_reader" src="../../assets/secret%20engines/db/app-reader.png"/></p>
 <h2 id="generate-credentials">Generate Credentials</h2>
-<p><div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>vault<span class="w"> </span><span class="nb">read</span><span class="w"> </span>database/creds/app-reader/
+<p><div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>vault<span class="w"> </span><span class="nb">read</span><span class="w"> </span>database/creds/app-reader/
 </code></pre></div>
 <img alt="generate_password" src="../../assets/secret%20engines/db/generated_password.png"/></p>
 <blockquote>
