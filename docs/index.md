@@ -30,6 +30,7 @@ Welcome! This guide is built from hands-on experience running Vault in real envi
 ### Secret Engines
 - [KV (Key/Value)](06-secret-engines/kv.md) — the most common engine; storing and versioning static secrets
 - [SSH Engine](06-secret-engines/ssh.md) — short-lived signed certificates instead of static SSH keys
+- [Database Dynamic Credentials](06-secret-engines/database.md) - Short-lived credentials for database following least privilege rule
 
 ### Operations
 - [Migrating Storage Backend](07-Operations/migrating-backened.md) — moving from filesystem to a production-grade backend
