@@ -1,7 +1,12 @@
 site_name: Vault Field Manual
 site_description: Hands-on HashiCorp Vault from production setup to secrets management
 site_author: Sachin
+site_url: https://sachin-kansal.github.io/vault-field-handbook/
 
+extra:
+  analytics:
+    provider: google
+    property: G-FMJSY1FV98
 plugins:
   - search
   - to-pdf:
